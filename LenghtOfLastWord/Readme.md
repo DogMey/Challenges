@@ -1,12 +1,12 @@
-# 📄 Length of Last Word
+# Length of Last Word
 
-## 🧩 Descripción del Problema
+## Descripción del Problema
 
 Se te proporciona una cadena de caracteres `s` que contiene palabras y espacios. Una **palabra** se define como cualquier secuencia de caracteres no vacía que no contiene espacios.
 
 Tu objetivo es devolver la **longitud de la última palabra** de la cadena. Si no existe ninguna palabra (es decir, si la cadena solo contiene espacios), el resultado debe ser `0`.
 
-## 🧠 ¿Cómo se soluciona?
+## ¿Cómo se soluciona?
 
 La solución al problema sigue estos pasos:
 
@@ -33,7 +33,7 @@ La solución al problema sigue estos pasos:
 - **Complejidad Espacial:** `O(n)`  
   Ya que la operación `split()` puede crear una lista de palabras que ocupa memoria proporcional al número de caracteres en la cadena original.
 
-## ✅ Consideraciones
+## Consideraciones
 
 - El problema incluye casos especiales como cadenas vacías o cadenas con múltiples espacios consecutivos.
 - Es una excelente práctica para manipulación de strings y manejo de bordes en entradas.
