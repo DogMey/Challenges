@@ -25,7 +25,7 @@ La solución al problema sigue estos pasos:
 5. **Contar la longitud de la última palabra**  
    Finalmente, se cuenta cuántos caracteres tiene la última palabra y se retorna ese valor como resultado.
 
-## ⏱️ Complejidad Computacional
+## Complejidad Computacional
 
 - **Complejidad Temporal:** `O(n)`  
   Donde `n` es la longitud de la cadena `s`. Esto se debe a que se recorren todos los caracteres de la cadena al hacer el `strip()` y el `split()`.
