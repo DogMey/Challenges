@@ -1,20 +1,13 @@
 class Solution(object):
     def findSubstring(self, s, words):
-        """
-        :type s: str
-        :type words: List[str]
-        :rtype: List[int]
-        """
-        n = len(s)
-        if n == 0 or not words:
+        words = list(set(words))  # Remove duplicates
+        if not s or not words:
             return []
+        n = len(s)
         word_length = len(words[0])
         word_count = len(words)
         total_length = word_length * word_count
-        if n < total_length:
-            return []
-        from collections import Counter
-        word_map = Counter(words)
+        word_map = {word: words.count(word) for word in words}
         result = []
         for i in range(n - total_length + 1):
             seen = {}
