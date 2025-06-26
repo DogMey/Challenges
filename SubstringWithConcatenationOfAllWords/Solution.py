@@ -1,23 +1,44 @@
-class Solution(object):
+from collections import Counter
+
+class Solution:
     def findSubstring(self, s, words):
-        words = list(set(words))  # Remove duplicates
         if not s or not words:
             return []
-        n = len(s)
-        word_length = len(words[0])
-        word_count = len(words)
-        total_length = word_length * word_count
-        word_map = {word: words.count(word) for word in words}
+
+        word_len = len(words[0])                  # Longitud de cada palabra
+        word_count = len(words)                   # Cuántas palabras hay
+        window_len = word_len * word_count        # Longitud total de la ventana
+        word_freq = Counter(words)                # Frecuencia de palabras esperadas
+
         result = []
-        for i in range(n - total_length + 1):
-            seen = {}
-            for j in range(word_count):
-                start_index = i + j * word_length
-                word = s[start_index:start_index + word_length]
-                if word not in word_map:
-                    break
-                seen[word] = seen.get(word, 0) + 1
-                if seen[word] > word_map[word]:
-                    break
-            else:
-                result.append(i)
+
+        # Solo necesitamos revisar cada posición inicial dentro del primer bloque de word_len
+        for i in range(word_len):
+            left = i
+            right = i
+            current_count = Counter()
+
+            while right + word_len <= len(s):
+                word = s[right:right + word_len]
+                right += word_len
+
+                if word in word_freq:
+                    current_count[word] += 1
+
+                    # Si se excede la cantidad esperada, movemos left para equilibrar
+                    while current_count[word] > word_freq[word]:
+                        left_word = s[left:left + word_len]
+                        current_count[left_word] -= 1
+                        left += word_len
+
+                    # Si el tamaño de ventana actual coincide, guardamos el índice
+                    if right - left == window_len:
+                        result.append(left)
+                else:
+                    current_count.clear()
+                    left = right
+
+        return result
+
+solution = Solution()
+print(solution.findSubstring("barfoothefoobarman", ["foo", "bar"]))
